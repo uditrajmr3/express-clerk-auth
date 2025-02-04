@@ -1,5 +1,6 @@
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const path = require('path');
 
 process.on('uncaughtException', (err) => {
   console.log('err.name', err.name);
@@ -8,11 +9,12 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-dotenv.config({ path: './config/.env.local' });
+dotenv.config({ path: path.resolve(__dirname, './config/.env.local') });
 const app = require('./app');
 
 // constants here
 const { PORT, DATABASE_CONNECTION_STRING, DATABASE_PASSWORD } = process.env;
+console.log(PORT);
 const db = DATABASE_CONNECTION_STRING.replace('<PASSWORD>', DATABASE_PASSWORD);
 
 mongoose
