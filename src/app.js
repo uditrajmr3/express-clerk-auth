@@ -5,7 +5,11 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const clerkMiddleware = require('@clerk/express');
+
+const clerkConfig = require('./config/clerk_config');
 const requestTimeMiddleware = require('./middlewares/request_time_middleware');
+const webhookController = require('./controllers/webhookController');
 
 // assignment and expressions here
 const app = express();
@@ -23,7 +27,10 @@ app.use(xss());
 app.use(hpp());
 // Custom middleware : adds the request time to the request object
 app.use(requestTimeMiddleware);
+// clerk Authentication
+app.use(clerkMiddleware(clerkConfig));
 
 // route controllers
+app.get('/api/webhooks/clerk', webhookController.clerk);
 
 module.exports = app;

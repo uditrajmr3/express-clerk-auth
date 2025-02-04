@@ -16,7 +16,17 @@
     "class-methods-use-this": "off",
     "prefer-destructuring": ["error", { "object": true, "array": false }],
     "no-unused-vars": ["error", { "argsIgnorePattern": "req|res|next|_" }],
-    "camelcase": ["off", { "properties": "never" }]
+    "camelcase": ["off", { "properties": "never" }],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "always-multiline"
+      }
+    ]
   },
   "parserOptions": {
     "requireConfigFile": false,
